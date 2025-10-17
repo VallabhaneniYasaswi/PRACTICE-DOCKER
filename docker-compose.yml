@@ -11,7 +11,7 @@ services:
       - mysql_data:/var/lib/mysql
 
   backend:
-    image: vallabhaneniyasaswi/docker-practice-backend:latest
+    image: vallabhaneniyasaswi/practice-backend:latest
     container_name: springboot-practice
     ports:
       - "7003:7002"
@@ -20,7 +20,7 @@ services:
     restart: on-failure
 
   frontend:
-    image: vallabhaneniyasaswi/docker-practice-frontend:latest
+    image: vallabhaneniyasaswi/practice-frontend:latest
     container_name: react-practice
     ports:
       - "7004:80"
