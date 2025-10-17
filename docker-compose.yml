@@ -1,0 +1,32 @@
+services:
+  mysqldb:
+    image: mysql:8
+    container_name: mysql-db-practice
+    environment:
+      MYSQL_ROOT_PASSWORD: ROOT
+      MYSQL_DATABASE: pracdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    image: vallabhaneniyasaswi/docker-practice-backend:latest
+    container_name: springboot-practice
+    ports:
+      - "7003:7002"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    image: vallabhaneniyasaswi/docker-practice-frontend:latest
+    container_name: react-practice
+    ports:
+      - "7004:80"
+    depends_on:
+      - backend
+    restart: on-failure
+
+volumes:
+  mysql_data:
